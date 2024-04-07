@@ -1,16 +1,23 @@
-from tkinter import filedialog
+import sys
+import os
 import csv
 
 
-fp = filedialog.askopenfilename(title="Pick your poison", filetypes=[("csv", "*.csv")])
-if not fp:
-    print("No file selected.")
+
+if len(sys.argv) > 2:
+    print('Try: "python csv_reader.py <file_path>"')
+    sys.exit(1)
+if len(sys.argv) == 2:
+    fp = sys.argv[1]
 else:
-    with open(fp, 'r') as contents:
-        reader = csv.reader(contents)
-        rows = []
-        for row in reader:
-            rows.append(row)
+    fp = input('File path: ').strip()
+    
+
+with open(fp, 'r') as contents:
+    reader = csv.reader(contents)
+    rows = []
+    for row in reader:
+        rows.append(row)
 
 
 numrows = len(rows)
@@ -38,16 +45,17 @@ def menu():
     user_input = input("What would you like to do? \n 1) Read a specific row. \n 2) Search \n 0) Exit \n  ")
     if user_input.strip() == "1":
       row_reader()
-      menu()
+      return True
     if user_input.strip() == "2":
         search()
-        menu()
+        return True
     if user_input.strip() == "0":
-      return
+      return False
       
     else: 
         print("Please enter a number:")
-        menu()
+        return True
         
       
-menu()
+while menu():
+    pass
