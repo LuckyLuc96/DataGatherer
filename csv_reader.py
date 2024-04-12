@@ -30,10 +30,10 @@ numrows = len(rows)
 
 def row_reader():
     read_row = int(input("Which row would you like to read? "))
-    actual_row = read_row - 1 # "actual" & "num" rows exist so the user can begin at 1 instead of 0
-    num_row = actual_row + 1
+    row_zero = read_row - 1 # "actual" & "num" rows exist so the user can begin at 1 instead of 0
+    num_row = row_zero + 1
     print("Row #1 is {}".format(rows[0]))
-    print("Row #{} is {}".format(num_row, rows[actual_row]))
+    print("Row #{} is {}".format(num_row, rows[row_zero]))
  
     
 def search():
