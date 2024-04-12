@@ -13,15 +13,11 @@ else:
         print("File not found")
         sys.exit(2) 
     
-    
-
-
-
-
-
 
 if fp.endswith(".csv"):
     import csv_reader
+if fp.endswith("html"):
+    import html_reader
 else:
-    print("HTML reader to be added here")
+    print("Only HTML and CSV file types are supported at this time.")
     pass
