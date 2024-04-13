@@ -1,36 +1,18 @@
-import sys
 import csv
+from main import fpvalue
 
-
-
-if len(sys.argv) > 2:
-    print('Try: "python csv_reader.py <file_path>"')
-    sys.exit(1)
-if len(sys.argv) == 2:
-    fp = sys.argv[1]
-else:
-    try:
-        fp = input('File path: ').strip()   
-    except: 
-        print("File not found")
-        sys.exit(2) 
-    
-    
-
+fp = fpvalue
 with open(fp, 'r') as contents:
     reader = csv.reader(contents)
     rows = []
     for row in reader:
         rows.append(row)
 
-
 numrows = len(rows)
-
-
 
 def row_reader():
     read_row = int(input("Which row would you like to read? "))
-    row_zero = read_row - 1 # "actual" & "num" rows exist so the user can begin at 1 instead of 0
+    row_zero = read_row - 1 # "read_row" & "row_zero" exist so the user can begin at 1 instead of 0
     num_row = row_zero + 1
     print("Row #1 is {}".format(rows[0]))
     print("Row #{} is {}".format(num_row, rows[row_zero]))

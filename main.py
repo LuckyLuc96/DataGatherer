@@ -1,17 +1,18 @@
 import sys
 
-
 if len(sys.argv) > 2:
     print('Try: "python main.py <file_path>"')
     sys.exit(1)
 if len(sys.argv) == 2:
     fp = sys.argv[1]
+    fpvalue = fp
 else:
     try:
-        fp = input('File path: ').strip()   
+        fp = input('File path: ').strip()
+        fpvalue = fp
     except: 
         print("File not found")
-        sys.exit(2) 
+        sys.exit(404) 
     
 
 if fp.endswith(".csv"):
