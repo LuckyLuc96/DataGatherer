@@ -1,7 +1,8 @@
 import csv
-from main import fpvalue
 
-fp = fpvalue
+from config import fp
+
+
 with open(fp, 'r') as contents:
     reader = csv.reader(contents)
     rows = []

@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
-from main import fpvalue
 
-fp = fpvalue
+from config import fp
+
 with open(fp, 'r') as contents:
     soup = BeautifulSoup(contents, 'html.parser')
     text = soup.get_text()
