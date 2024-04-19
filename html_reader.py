@@ -1,15 +1,14 @@
 from bs4 import BeautifulSoup
+import time
 
-from config import fp
-
-with open(fp, 'r') as contents:
-    soup = BeautifulSoup(contents, 'html.parser')
-    text = soup.get_text()
-
-
-
-
- 
+def openup(fp):
+    with open(fp, 'r') as contents:
+        global text
+        global soup
+        soup = BeautifulSoup(contents, 'html.parser')
+        text = soup.get_text()
+    html_menu()
+        
     
 def search():
     search_entry = input("Search: ")
@@ -34,29 +33,30 @@ def extract_links():
         print(items, '\n')
 
 
-def menu():
+def html_menu():
     user_input = input("What would you like to do? \n 1) Show HTML \n 2) Show plain text \n 3) Show links \n 4) Search \n 0) Exit \n  ")
     if user_input.strip() == "1":
         print(soup.prettify())
         print("Scroll up for results.")
-        return True
+        time.sleep(1)
+        html_menu()
     if user_input.strip() == "2":
         print(text)
         print("Scroll up for results.")
-        return True 
+        time.sleep(1)
+        html_menu()
     if user_input.strip() == "3":
         extract_links()
         print("Links with text different past 40 characters not shown.")
-        return True
+        time.sleep(1)
+        html_menu()
     if user_input.strip() == "4":
         search()
-        return True
+        time.sleep(1)
+        html_menu()
     if user_input.strip() == "0":
-      return False
+        quit()
     else: 
         print("Please enter a valid number:")
-        return True
-        
-   
-while menu(): #This starts menu() and also acts as the end of the program once the user returns "0"   
-    pass
+        time.sleep(1)
+        html_menu()

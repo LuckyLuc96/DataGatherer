@@ -1,15 +1,17 @@
 import csv
+import time
 
-from config import fp
+def openup(fp):
+    global rows
+    global numrows
+    with open(fp, 'r') as contents:
+        reader = csv.reader(contents)
+        rows = []
+        for row in reader:
+            rows.append(row)
+    numrows = len(rows)
+    csv_menu()
 
-
-with open(fp, 'r') as contents:
-    reader = csv.reader(contents)
-    rows = []
-    for row in reader:
-        rows.append(row)
-
-numrows = len(rows)
 
 def row_reader():
     read_row = int(input("Which row would you like to read? "))
@@ -35,21 +37,20 @@ def search():
         print("No results found.")
 
 
-def menu():
+def csv_menu():
     user_input = input("What would you like to do? \n 1) Read a specific row. \n 2) Search \n 0) Exit \n  ")
     if user_input.strip() == "1":
       print("The selected file has", numrows, "rows.")
       row_reader()
-      return True
+      time.sleep(1)
+      csv_menu()
     if user_input.strip() == "2":
         search()
-        return True
+        time.sleep(1)
+        csv_menu()
     if user_input.strip() == "0":
-      return False
+        quit()
     else: 
         print("Please enter a valid number:")
-        return True
-        
-   
-while menu(): #This starts menu() and also acts as the end of the program once the user returns "0"   
-    pass
+        time.sleep(1)
+        csv_menu()
