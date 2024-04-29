@@ -9,7 +9,6 @@ def get_fp():
         pass
 
 def check_file_type():
-    global fp
     fp = get_fp()
     if fp.endswith(".csv"):
         from csv_reader import openup
