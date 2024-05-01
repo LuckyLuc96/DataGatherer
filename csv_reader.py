@@ -25,6 +25,41 @@ def get_num_column():
         column_counter = column_counter + 1
     print("There are", column_counter, "columns and", numrows, "rows.")
 
+def math_menu():
+    input_math_menu = input('Would you like to perform operations on a column or a row? \n Enter "A" for columns \n Enter "B" for rows \n Enter "0" to exit\n').upper()
+    if input_math_menu == "A":
+        column_math()
+        math_menu()
+    if input_math_menu == "B":
+        row_math()
+        math_menu()
+    if input_math_menu == "0":
+        quit()
+    else:
+        math_menu()
+    
+def column_math():
+    get_num_column()
+    print("This is column_math and isn't implimented yet")
+    
+def row_math():
+    get_num_column()
+    input_row = int(input("Which row would you like to perform operations on?\n"))
+    math_option = input("Please select an operation to perform on row {input_row} \n A) Sum\n".format(input_row = input_row)).upper()
+    try:
+        if math_option == "A":
+            row_value = rows[input_row - 1]
+            # These next two lines should take and sum all values that are numbers inside of the user selected row, ignoring non-numbers.
+            numeric_values = [float(value) for value in row_value if isinstance(value, (int, float))]
+            row_sum = sum(numeric_values)
+            print("DEBUGGING:: row_value = ", row_value)
+            print("DEBUGGING:: numeric_values = ", numeric_values)
+            print("The sum of all numbers in this row is: ", row_sum)
+    except IndexError:
+        print("Invalid row number")
+    except Exception as e:
+        print("An error occured:", e)
+        
 
 def search():
     search_entry = input("Search: ")
@@ -41,8 +76,6 @@ def search():
     else:
         print("No results found.")
 
-def math_menu():
-    raise NotImplementedError("WIP")
 
 def csv_menu():
     user_input = input("What would you like to do? \n 1) Read a specific row. \n 2) Search \n 3) Do math \n 0) Exit \n  ")
@@ -54,11 +87,10 @@ def csv_menu():
         search()
         csv_menu()
     if user_input.strip() == "3":
-        get_num_column()
         math_menu()
         csv_menu()
     if user_input.strip() == "0":
         quit()
     else: 
-        print("Please enter a valid number:")
+        print("Please enter a valid number, such as '1' or '0'")
         csv_menu()
