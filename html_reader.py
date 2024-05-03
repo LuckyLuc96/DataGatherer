@@ -1,10 +1,9 @@
 from bs4 import BeautifulSoup
-import time
 
 def openup(fp):
     with open(fp, 'r') as contents:
-        global text
         global soup
+        global text
         soup = BeautifulSoup(contents, 'html.parser')
         text = soup.get_text()
     html_menu()
@@ -38,25 +37,20 @@ def html_menu():
     if user_input.strip() == "1":
         print(soup.prettify())
         print("Scroll up for results.")
-        time.sleep(1)
         html_menu()
     if user_input.strip() == "2":
         print(text)
         print("Scroll up for results.")
-        time.sleep(1)
         html_menu()
     if user_input.strip() == "3":
         extract_links()
-        print("Links with text different past 40 characters not shown.")
-        time.sleep(1)
+        print("Links that differ beyond 40 characters not shown.")
         html_menu()
     if user_input.strip() == "4":
         search()
-        time.sleep(1)
         html_menu()
     if user_input.strip() == "0":
         quit()
     else: 
         print("Please enter a valid number:")
-        time.sleep(1)
         html_menu()

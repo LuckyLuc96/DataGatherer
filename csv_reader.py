@@ -25,6 +25,19 @@ def get_num_column():
     for item in rows[0]:
         column_counter = column_counter + 1
     print("There are", column_counter, "columns and", numrows, "rows.")
+    
+def make_column():
+    global transposed_rows
+    num_columns = len(rows[0])
+    transposed_rows = [[] for _ in range(num_columns)]
+    
+    for row in rows:
+        for i, value in enumerate(row):
+            if isinstance(value, float):
+                transposed_rows[i].append(value)
+    return transposed_rows
+
+     
 
 def math_menu():
     input_math_menu = input('Would you like to perform operations on a column or a row? \n Enter "A" for columns \n Enter "B" for rows \n Enter "0" to exit\n').upper()
@@ -42,7 +55,18 @@ def math_menu():
     
 def column_math():
     get_num_column()
-    print("This is column_math and isn't implimented yet")
+    selection = int(input("Select a column to perform operations on. \n"))
+    selection = selection - 1 #Index begins at 0
+    try:
+        make_column()
+        print("Peforming math operations on column", (selection + 1))
+        print("The sum of all numbers in this row is:",sum(transposed_rows[selection]))
+        print("The mean of all numbers in this row is:",statistics.mean(transposed_rows[selection]))
+        print("The median of all numbers in this row is:",statistics.median(transposed_rows[selection]))
+        print("The mode of all numbers in this row is:",statistics.multimode(transposed_rows[selection]),"multiple modes may be present in some cases")
+        
+    except Exception as e:
+        print("An error occured:", e)
     
 def row_math():
     get_num_column()
@@ -51,12 +75,12 @@ def row_math():
     numeric_values = [float(value) for value in row_value if isinstance(value, float)]
     try:
         print("Peforming math operations on row", input_row)
-        print("The sum of all numbers in this row is: ", sum(numeric_values))
-        print("The mean of all numbers in this row is: ", statistics.mean(numeric_values))
-        print("The median of all numbers in this row is: ", statistics.median(numeric_values))
+        print("Row",input_row,"is", row_value)
+        print("The sum of all numbers in this row is:", sum(numeric_values))
+        print("The mean of all numbers in this row is:", statistics.mean(numeric_values))
+        print("The median of all numbers in this row is:", statistics.median(numeric_values))
+        print("The mode of all numbers in this row is:", statistics.multimode(numeric_values),"multiple modes may be present in some cases")
         print()
-    except IndexError:
-        print("Invalid row number")
     except Exception as e:
         print("An error occured:", e)
         
