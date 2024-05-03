@@ -10,7 +10,7 @@ DataGatherer is a lightweight Python tool designed to extract and analyze data f
 
 ## Usage
 
-1. Clone the repository: https://github.com/LuckyLuc96/csv_reader.git
+1. Clone the repository: https://github.com/LuckyLuc96/DataGatherer.git
 2. run main.py via "python main.py"
 
 ## Dependencies
