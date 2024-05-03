@@ -1,5 +1,5 @@
 import csv
-import math
+import statistics
 
 def openup(fp):
     global rows
@@ -8,20 +8,10 @@ def openup(fp):
         reader = csv.reader(contents)
         rows = []
         for row in reader:
-            rows.append(row)
+            converted_row = [float(val) if val.replace('.', '', 1).isdigit() else val for val in row]
+            rows.append(converted_row)
     numrows = len(rows)
     csv_menu()
-
-global rows
-global numrows
-with open("/home/lucky1/Documents/My Games/Programs/Python/lottery/NCEL-Cash5.csv", 'r') as contents:
-    reader = csv.reader(contents)
-    rows = []
-    for row in reader:
-        rows.append(row)
-numrows = len(rows)
-
-
 
 def row_reader():
     read_row = int(input("Which row would you like to read? "))
@@ -58,14 +48,13 @@ def row_math():
     get_num_column()
     input_row = int(input("Which row would you like to perform operations on?\n"))
     row_value = rows[input_row - 1]
-    #The below line is supposed to extract all numerical values from the row
-    numeric_values = [float(value) for value in row_value if value is isinstance(int, float)]
+    numeric_values = [float(value) for value in row_value if isinstance(value, float)]
     try:
         print("Peforming math operations on row", input_row)
-        row_sum = sum(numeric_values)
-        print("DEBUGGING: row_value = ", row_value)
-        print("DEBUGGING: numeric_values = ", numeric_values)
-        print("The sum of all numbers in this row is: ", row_sum)
+        print("The sum of all numbers in this row is: ", sum(numeric_values))
+        print("The mean of all numbers in this row is: ", statistics.mean(numeric_values))
+        print("The median of all numbers in this row is: ", statistics.median(numeric_values))
+        print()
     except IndexError:
         print("Invalid row number")
     except Exception as e:
