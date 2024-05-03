@@ -37,8 +37,6 @@ def make_column():
                 transposed_rows[i].append(value)
     return transposed_rows
 
-     
-
 def math_menu():
     input_math_menu = input('Would you like to perform operations on a column or a row? \n Enter "A" for columns \n Enter "B" for rows \n Enter "0" to exit\n').upper()
     if input_math_menu == "A":
