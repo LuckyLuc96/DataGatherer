@@ -1,10 +1,10 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as beautiful_soup
 
 def open_up(fp):
     with open(fp, 'r') as contents:
         global soup
         global text
-        soup = BeautifulSoup(contents, 'html.parser')
+        soup = beautiful_soup(contents, 'html.parser')
         text = soup.get_text()
     html_menu()
         
