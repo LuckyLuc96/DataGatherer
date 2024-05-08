@@ -1,16 +1,16 @@
 import csv
 import statistics
 
-def openup(fp):
+def open_up(fp):
     global rows
-    global numrows
+    global num_rows
     with open(fp, 'r') as contents:
         reader = csv.reader(contents)
         rows = []
         for row in reader:
             converted_row = [float(val) if val.replace('.', '', 1).isdigit() else val for val in row]
             rows.append(converted_row)
-    numrows = len(rows)
+    num_rows = len(rows)
     csv_menu()
 
 def row_reader():
@@ -24,7 +24,7 @@ def get_num_column():
     column_counter = 0
     for item in rows[0]:
         column_counter = column_counter + 1
-    print("There are", column_counter, "columns and", numrows, "rows.")
+    print("There are", column_counter, "columns and", num_rows, "rows.")
     
 def make_column():
     global transposed_rows
@@ -102,7 +102,7 @@ def search():
 def csv_menu():
     user_input = input("What would you like to do? \n 1) Read a specific row. \n 2) Search \n 3) Do math \n 0) Exit \n  ")
     if user_input.strip() == "1":
-      print("The selected file has", numrows, "rows.")
+      print("The selected file has", num_rows, "rows.")
       row_reader()
       csv_menu()
     if user_input.strip() == "2":

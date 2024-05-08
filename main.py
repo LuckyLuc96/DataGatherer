@@ -11,11 +11,11 @@ def get_fp():
 def check_file_type():
     fp = get_fp()
     if fp.endswith(".csv"):
-        from csv_reader import openup
-        openup(fp)
+        from csv_reader import open_up
+        open_up(fp)
     elif fp.endswith(".html"):
-        from html_reader import openup
-        openup(fp)
+        from html_reader import open_up
+        open_up(fp)
     else:
         print(fp)
         print("Only HTML and CSV file types are supported at this time.")

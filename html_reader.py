@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-def openup(fp):
+def open_up(fp):
     with open(fp, 'r') as contents:
         global soup
         global text
