@@ -58,10 +58,10 @@ def column_math():
     try:
         make_column()
         print("Peforming math operations on column", (selection + 1))
-        print("The sum of all numbers in this row is:",sum(transposed_rows[selection]))
-        print("The mean of all numbers in this row is:",statistics.mean(transposed_rows[selection]))
-        print("The median of all numbers in this row is:",statistics.median(transposed_rows[selection]))
-        print("The mode of all numbers in this row is:",statistics.multimode(transposed_rows[selection]),"multiple modes may be present in some cases")
+        print("The sum of all numbers in this column is:",f'{sum(transposed_rows[selection]):,}')
+        print("The mean of all numbers in this column is:",f'{statistics.mean(transposed_rows[selection]):,}')
+        print("The median of all numbers in this column is:",f'{statistics.median(transposed_rows[selection]):,}')
+        print("The mode of all numbers in this column is:", statistics.multimode(transposed_rows[selection]),"Multiple modes may be present in some cases")
         
     except Exception as e:
         print("An error occured:", e)
@@ -74,10 +74,10 @@ def row_math():
     try:
         print("Peforming math operations on row", input_row)
         print("Row",input_row,"is", row_value)
-        print("The sum of all numbers in this row is:", sum(numeric_values))
-        print("The mean of all numbers in this row is:", statistics.mean(numeric_values))
-        print("The median of all numbers in this row is:", statistics.median(numeric_values))
-        print("The mode of all numbers in this row is:", statistics.multimode(numeric_values),"multiple modes may be present in some cases")
+        print("The sum of all numbers in this row is:", f'{sum(numeric_values):,}')
+        print("The mean of all numbers in this row is:", f'{statistics.mean(numeric_values):,}')
+        print("The median of all numbers in this row is:", f'{statistics.median(numeric_values):,}')
+        print("The mode of all numbers in this row is:", statistics.multimode(numeric_values),"Multiple modes may be present in some cases")
         print()
     except Exception as e:
         print("An error occured:", e)
