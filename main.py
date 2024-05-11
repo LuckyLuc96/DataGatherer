@@ -3,6 +3,8 @@ import sys
 def get_fp():
     try:
         fp = input('File path: ').strip()
+        fp = fp.strip("'")
+        print(fp)
         return fp
     except:
         print("Invalid file path:", fp)
